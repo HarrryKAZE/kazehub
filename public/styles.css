@@ -1,0 +1,37 @@
+/* public/style.css */
+
+/* Custom styles for font-inter, applied via Tailwind, but good to have if Tailwind isn't loaded */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Basic scrollbar styling for better aesthetics in snippet list */
+#categories-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+#categories-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+#categories-container::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+#categories-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Ensure textarea resizes gracefully */
+textarea {
+    min-height: 150px; /* Minimum height for textarea */
+}
+
+/* Adjust max-height for snippet list on smaller screens */
+@media (max-width: 767px) {
+    #categories-container {
+        max-height: 40vh; /* Shorter max-height on mobile */
+    }
+}

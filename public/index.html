@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Minimal Gist</title>
+    <!-- Inter font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom CSS for basic styles and overrides -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="font-inter bg-gray-100 flex items-center justify-center min-h-screen p-4 sm:p-6 lg:p-8">
+    <div class="max-w-4xl w-full bg-white p-6 sm:p-8 rounded-xl shadow-lg flex flex-col md:flex-row gap-8">
+        <!-- Left Column: Create New Snippet -->
+        <div class="md:w-1/2 flex flex-col">
+            <h1 class="text-3xl font-bold text-gray-800 mb-6 rounded-md">Create a New Gist ✨</h1>
+
+            <form id="snippet-form" class="flex flex-col gap-4">
+                <!-- Title Input -->
+                <input
+                    type="text"
+                    id="snippet-title"
+                    placeholder="Enter a descriptive title for your gist..."
+                    class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
+                    required
+                />
+                
+                <!-- Category Select -->
+                <select
+                    id="snippet-category"
+                    class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base bg-white"
+                    required
+                >
+                    <option value="default" disabled selected>Loading Subjects...</option>
+                    <!-- Options will be loaded dynamically by JavaScript -->
+                </select>
+
+                <textarea
+                    id="snippet-content"
+                    placeholder="Type your code snippet or text here..."
+                    rows="10"
+                    class="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-y text-sm sm:text-base"
+                    required
+                ></textarea>
+                <button
+                    type="submit"
+                    class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105"
+                >
+                    Save Gist
+                </button>
+            </form>
+
+            <div id="message-box" class="mt-4 p-3 rounded-lg text-sm hidden"></div>
+        </div>
+
+        <!-- Right Column: Existing Snippets Organized by Category -->
+        <div class="md:w-1/2 flex flex-col">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-bold text-gray-800 rounded-md">Recent Gists by Subject 📜</h2>
+                <button id="manage-subjects-btn" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 text-sm">
+                    Manage Subjects
+                </button>
+            </div>
+            
+            <!-- This div will be populated dynamically by JavaScript -->
+            <div id="categories-container" class="flex flex-col gap-6 overflow-y-auto max-h-[60vh] pr-2">
+                <p class="text-gray-500 text-center" id="loading-message">Loading gists...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Subject Management Modal -->
+    <div id="subject-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 hidden">
+        <div class="bg-white p-6 sm:p-8 rounded-xl shadow-lg w-full max-w-md relative">
+            <button id="close-modal-btn" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl font-bold">&times;</button>
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Manage Your Subjects</h2>
+            
+            <div id="subject-list" class="mb-6 max-h-60 overflow-y-auto pr-2">
+                <!-- Subjects will be loaded here -->
+                <p class="text-gray-500 text-center" id="loading-subjects-message">Loading subjects...</p>
+            </div>
+
+            <form id="add-subject-form" class="flex flex-col sm:flex-row gap-3">
+                <input
+                    type="text"
+                    id="new-subject-name"
+                    placeholder="New Subject Name"
+                    class="flex-grow p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
+                    required
+                />
+                <button
+                    type="submit"
+                    class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105"
+                >
+                    Add Subject
+                </button>
+            </form>
+            <div id="subject-message-box" class="mt-4 p-3 rounded-lg text-sm hidden"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
